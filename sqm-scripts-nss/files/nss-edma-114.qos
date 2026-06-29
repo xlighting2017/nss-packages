@@ -1,0 +1,25 @@
+#!/bin/sh
+# shellcheck disable=2086,3010,1091,3043,2034
+###############################################################################
+# nss-edma-114.qos -- HW-accelerated SQM for the 11.4 NSS firmware line
+#
+# The 11.4 firmware (the 802.11s mesh offload line, NSS.HK.11.4.0.5) shares
+# the shaper configuration ABI with 12.5 -- the qdisc trees, the fast lane
+# and the upload IGS all program identically -- but differs in the
+# statistics wire format (per-node polling instead of sync-many; handled by
+# the NSS qdisc kernel module when built for 11.4) and in the firmware's
+# internal tuning. This script selects the 11.4 behavior knobs and shares
+# the full implementation with nss-edma.qos: same features, same firewall
+# fast-lane contract (`ip dscp set <class> meta priority set 100:0`), same
+# `option igs_upload '<ports>'` upload isolation, same DSCP steering of
+# accelerated flows in both directions.
+#
+# Select it with:  option script 'nss-edma-114.qos'
+#
+# Maintainer: Julius Bairaktaris <julius@bairaktaris.de>
+###############################################################################
+
+# 11.4 firmware mode: nss-edma.qos adapts where the firmware lines differ.
+NSS_FW_114=1
+
+. /usr/lib/sqm/nss-edma.qos

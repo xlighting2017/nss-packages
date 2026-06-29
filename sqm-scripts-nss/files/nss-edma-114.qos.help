@@ -1,0 +1,7 @@
+NSS-accelerated SQM for the 11.4 NSS firmware line (the 802.11s mesh offload
+builds). Same features and tuning as nss-edma.qos: physical WAN port as the
+SQM interface, gross L2 rates, `option igs_upload` per-port upload isolation,
+and the strict-priority DSCP fast lane (`ip dscp set <class> meta priority
+set 100:0`, both directions, `option fastlane '0'` to disable). ECN settings
+are ignored on 11.4 too. Requires an image built with NSS_FIRMWARE_VERSION_11_4
+(the NSS qdisc module then speaks the 11.4 per-node statistics format).
