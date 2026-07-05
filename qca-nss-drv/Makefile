@@ -145,6 +145,10 @@ ifdef CONFIG_NSS_FIRMWARE_VERSION_12_5
   EXTRA_CFLAGS += -DNSS_FIRMWARE_VERSION_12_5
 endif
 
+ifdef CONFIG_NSS_FIRMWARE_VERSION_11_4
+  EXTRA_CFLAGS += -DNSS_FIRMWARE_VERSION_11_4
+endif
+
 DRV_MAKE_OPTS:=
 
 # qca_edma/qca_ppe stack: no qca-ssdk, so PPE virtual-port support
